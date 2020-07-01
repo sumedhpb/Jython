@@ -273,6 +273,7 @@ class CBASAuditLogs(CBASBaseTest):
 
         self.log.info("Update service configuration service parameter: logLevel")
         service_configuration_map = {"logLevel": "TRACE"}
+        time.sleep(30)
         status, _, _ = self.cbas_util.update_service_parameter_configuration_on_cbas(service_configuration_map, username="cbas_admin")
         self.assertTrue(status, msg="Incorrect status for service configuration PUT request")
 
