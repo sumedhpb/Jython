@@ -1,4 +1,5 @@
 import json
+import time
 
 from cbas.cbas_base import CBASBaseTest
 from security_utils.audit_ready_functions import audit
@@ -83,6 +84,7 @@ class CBASAuditLogs(CBASBaseTest):
         expected_dict["config_after:" + key] = value
 
         self.log.info("Validate audit log for service configuration update")
+        time.sleep(30)
         self.validate_audit_event(self.audit_id, self.cbas_node, expected_dict)
 
     """
@@ -109,6 +111,7 @@ class CBASAuditLogs(CBASBaseTest):
             expected_dict["config_after:" + key] = update_configuration_map[key]
 
         self.log.info("Validate audit log for service configuration update")
+        time.sleep(30)
         self.validate_audit_event(self.audit_id, self.cbas_node, expected_dict)
 
     """
@@ -168,6 +171,7 @@ class CBASAuditLogs(CBASBaseTest):
 
         self.log.info("Enable audit logging for service configuration change")
         audit_obj.setAuditFeatureDisabled('')
+        time.sleep(30)
 
         self.log.info("Update configuration service parameters: logLevel")
         status, _, _ = self.cbas_util.update_service_parameter_configuration_on_cbas(service_configuration_map)
@@ -199,6 +203,7 @@ class CBASAuditLogs(CBASBaseTest):
 
         self.log.info("Enable audit logging for node configuration change")
         audit_obj.setAuditFeatureDisabled('')
+        time.sleep(30)
 
         self.log.info("Update configuration node parameters: storageBuffercacheSize")
         status, _, _ = self.cbas_util.update_node_parameter_configuration_on_cbas(node_configuration_map)
